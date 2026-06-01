@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-// Solid, concrete inline styling system requiring absolutely zero configuration files
 const UI = {
   layout: {
-    fontFamily: 'system-ui, -apple-system, sans-serif',
+    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     backgroundColor: '#0f172a',
     color: '#f8fafc',
     minHeight: '100vh',
     margin: 0,
-    padding: 0,
-    boxSizing: 'border-box'
+    padding: '0 0 40px 0',
+    boxSizing: 'border-box',
+    display: 'block'
   },
   topBar: {
     display: 'flex',
@@ -63,7 +63,8 @@ const UI = {
     borderRadius: '12px',
     padding: '32px',
     border: '1px solid #334155',
-    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)'
+    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)',
+    textAlign: 'left'
   },
   heading: {
     fontSize: '28px',
@@ -86,7 +87,8 @@ const UI = {
     backgroundColor: '#0f172a',
     padding: '16px',
     borderRadius: '8px',
-    border: '1px solid #334155'
+    border: '1px solid #334155',
+    textAlign: 'left'
   },
   metricLabel: {
     fontSize: '12px',
@@ -119,7 +121,8 @@ const UI = {
   td: {
     padding: '14px 16px',
     borderBottom: '1px solid #334155',
-    color: '#e2e8f0'
+    color: '#e2e8f0',
+    textAlign: 'left'
   },
   input: {
     width: '100%',
@@ -170,10 +173,6 @@ export default function App() {
     { id: 2, name: 'Olive Oil', category: 'Condiments', status: 'Low Warning Alert', limit: 1 }
   ]);
 
-  const addItem = () => {
-    setItems([...items, { id: Date.now(), name: '', category: '', status: 'High Stock Capacity', limit: 1 }]);
-  };
-
   return (
     <div style={UI.layout}>
       {/* Top Header Navigation */}
@@ -205,7 +204,7 @@ export default function App() {
             <div style={UI.grid}>
               <div style={UI.metricBlock}>
                 <div style={UI.metricLabel}>Wallet Thresholds</div>
-                <div style={UI.metricVal}>₱-6,350 / ₱5,000</div>
+                <div style={UI.metricVal}> must be filled out</div>
               </div>
               <div style={UI.metricBlock}>
                 <div style={UI.metricLabel}>Total Stored Items</div>
@@ -224,7 +223,9 @@ export default function App() {
             <h1 style={UI.heading}>Stockpile Ledger &amp; Vault</h1>
             <p style={UI.subtext}>Main stock ledger index synced to end-of-day automation checks.</p>
             
-            <button style={UI.actionBtn} onClick={addItem}>+ Provision Stock Item</button>
+            <button style={UI.actionBtn} onClick={() => setItems([...items, { id: Date.now(), name: '', category: '', status: 'High Stock Capacity', limit: 1 }])}>
+              + Provision Stock Item
+            </button>
 
             <table style={UI.table}>
               <thead>
